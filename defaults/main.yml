@@ -1,0 +1,11 @@
+---
+# defaults file for k8s-cluster-deploy
+containerd_release_url: "https://github.com/containerd/containerd/releases/download/v2.1.4/containerd-2.1.4-linux-amd64.tar.gz"
+containerd_release_dest: "/tmp/containerd-2.1.4-linux-amd64.tar.gz"
+containerd_service_url: "https://raw.githubusercontent.com/containerd/containerd/main/containerd.service"
+runc_release_url: "https://github.com/opencontainers/runc/releases/download/v1.3.1/runc.amd64"
+runc_release_dest: "/tmp/runc.amd64"
+cni_plugins_url: "https://github.com/containernetworking/plugins/releases/download/v1.8.0/cni-plugins-linux-amd64-v1.8.0.tgz"
+cni_plugins_dest: "/tmp/cni-plugins-linux-amd64-v1.8.0.tgz"
+k8s_repository: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ k8s_version }}/deb/ /"
+k8s_version: "v1.34"
