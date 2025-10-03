@@ -73,5 +73,5 @@ Author Information
 
 Nom: AUGET  
 Prénom: Rabina  
-Adresse mail: Auget  
+Adresse mail: rabinauget@gmail.com  
 LinkdIn: https://www.linkedin.com/in/rabina-auget-61663314a
