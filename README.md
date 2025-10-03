@@ -7,9 +7,9 @@ Il applique également les configurations système indispensables au bon fonctio
 Requirements
 ------------
 
-- OS supporté : Ubuntu 20.04+ / Debian 11+
-- Kernel : version >= 4.0
-- Mémoire : minimum 2 Go RAM par nœud
+- **OS supporté** : Ubuntu 20.04+ / Debian 11+
+- **Kernel** : version >= 4.0
+- **Mémoire** : minimum 2 Go RAM par nœud
 - Accès root ou utilisateur avec privilèges sudo
 - Connexion internet (pour télécharger containerd, runc, CNI et les paquets Kubernetes)
 
@@ -40,7 +40,7 @@ cni_plugins_dest: "/tmp/cni-plugins-linux-amd64-v1.8.0.tgz"
 # Dépôt apt Kubernetes
 k8s_repository: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ k8s_version }}/deb/ /"
 ```
-Mais on peut les surcharger selon tes besoins (par exemple, pour installer une version spécifique de Kubernetes ou de containerd).
+Mais on peut les surcharger selon nos besoins (par exemple, pour installer une version spécifique de Kubernetes ou de containerd).
 
 Dependencies
 ------------
@@ -71,7 +71,7 @@ BSD
 Author Information
 ------------------
 
-Nom: AUGET
-Prénom: Rabina
-Adresse mail: Auget
+Nom: AUGET  
+Prénom: Rabina  
+Adresse mail: Auget  
 LinkdIn: https://www.linkedin.com/in/rabina-auget-61663314a
