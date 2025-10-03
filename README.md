@@ -1,31 +1,67 @@
-Role Name
+ansible-role-k8s-install-3k
 =========
 
-A brief description of the role goes here.
+Ce rôle Ansible installe et configure les composants nécessaires à un cluster Kubernetes : kubelet, kubeadm, kubectl ainsi que le runtime containerd et les plugins CNI.
+Il applique également les configurations système indispensables au bon fonctionnement de Kubernetes (swap désactivé, modules noyau, paramètres sysctl, etc.).
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- OS supporté : Ubuntu 20.04+ / Debian 11+
+- Kernel : version >= 4.0
+- Mémoire : minimum 2 Go RAM par nœud
+- Accès root ou utilisateur avec privilèges sudo
+- Connexion internet (pour télécharger containerd, runc, CNI et les paquets Kubernetes)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Variables par défaut (définies dans defaults/main.yml) :
+
+```yaml
+# Version de Kubernetes à installer
+k8s_version: "v1.34"
+
+# URL et destination du binaire containerd
+containerd_release_url: "https://github.com/containerd/containerd/releases/download/v2.1.4/containerd-2.1.4-linux-amd64.tar.gz"
+containerd_release_dest: "/tmp/containerd-2.1.4-linux-amd64.tar.gz"
+
+# URL du service systemd pour containerd
+containerd_service_url: "https://raw.githubusercontent.com/containerd/containerd/main/containerd.service"
+
+# URL et destination du binaire runc
+runc_release_url: "https://github.com/opencontainers/runc/releases/download/v1.3.1/runc.amd64"
+runc_release_dest: "/tmp/runc.amd64"
+
+# URL et destination des plugins CNI
+cni_plugins_url: "https://github.com/containernetworking/plugins/releases/download/v1.8.0/cni-plugins-linux-amd64-v1.8.0.tgz"
+cni_plugins_dest: "/tmp/cni-plugins-linux-amd64-v1.8.0.tgz"
+
+# Dépôt apt Kubernetes
+k8s_repository: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ k8s_version }}/deb/ /"
+```
+Mais on peut les surcharger selon tes besoins (par exemple, pour installer une version spécifique de Kubernetes ou de containerd).
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Aucune dépendance directe avec d’autres rôles Ansible, mais il est recommandé d’avoir :
+- Un rôle de sécurisation de base (firewall, SSH, utilisateurs, etc.) avant de déployer Kubernetes.
+- Un rôle de gestion réseau si tu veux installer un CNI spécifique comme Calico, Flannel ou Cilium.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- hosts: k8s_nodes
+  become: yes
+  roles:
+    - role: ansible-role-k8s-install-3k
+      vars:
+        k8s_version: "v1.34"
+```
 
 License
 -------
@@ -35,4 +71,7 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Nom: AUGET
+Prénom: Rabina
+Adresse mail: Auget
+LinkdIn: https://www.linkedin.com/in/rabina-auget-61663314a

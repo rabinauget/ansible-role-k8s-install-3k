@@ -1,7 +1,7 @@
 galaxy_info:
   author: auget
   description: Install kubeadm kubelet kubectl
-  role_name: k8s-install-3k
+  role_name: ansible-role-k8s-install-3k
   company: auget-skynet-toshiro 
 
   # If the issue tracker for your role is not on github, uncomment the
