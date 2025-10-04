@@ -125,10 +125,10 @@
 
 - name: Generate default containerd configuration file
   ansible.builtin.shell: |
-    set -o pipefail
-    /usr/local/bin/containerd config default | sudo tee /etc/containerd/config.toml
+    /usr/local/bin/containerd config default | tee /etc/containerd/config.toml
   args:
     creates: /etc/containerd/config.toml
+    executable: /bin/bash
   changed_when: false
 
 - name: Set SystemdCgroup to true in containerd config
@@ -185,10 +185,10 @@
 
 - name: Download and Install GPG key for Kubernetes
   ansible.builtin.shell: |
-    set -o pipefail
-    curl -fsSL https://pkgs.k8s.io/core:/stable:/{{ k8s_version }}/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/{{ k8s_version }}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
   args:
     creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    executable: /bin/bash
   vars:
     k8s_version: "v1.34"
 
