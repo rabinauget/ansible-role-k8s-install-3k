@@ -146,6 +146,7 @@
   notify:
     - Reload systemd
     - Enable and start containerd
+  changed_when: true
 
 - name: Download runc binary to temp
   ansible.builtin.get_url:
@@ -224,7 +225,8 @@
     line: 'KUBELET_EXTRA_ARGS="--container-runtime=remote --container-runtime-endpoint=unix:///run/containerd/containerd.sock"'
     create: yes
   notify:
-    - Ensure kubelet service is enabled and started
+    - Restart kubelet
+  changed_when: true
 
 - name: Clean up temporary files
   ansible.builtin.file:
@@ -233,3 +235,4 @@
   loop:
     - /tmp/containerd-2.1.4-linux-amd64.tar.gz
     - /tmp/cni-plugins-linux-amd64-v1.8.0.tgz
+    - /tmp/runc.amd64

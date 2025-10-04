@@ -9,13 +9,8 @@
     enabled: yes
     state: started
 
-- name: Ensure kubelet service is enabled and started
-  ansible.builtin.systemd:
-    name: kubelet
-    enabled: yes
-    state: started
-  
 - name: Restart kubelet
   ansible.builtin.systemd:
     name: kubelet
+    enabled: yes
     state: restarted

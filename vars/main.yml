@@ -1,2 +1,10 @@
 ---
 # vars file for k8s-cluster-deploy
+containerd_release_url: "https://github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-linux-amd64.tar.gz"
+containerd_release_dest: "/tmp/containerd-{{ containerd_version }}-linux-amd64.tar.gz"
+containerd_service_url: "https://raw.githubusercontent.com/containerd/containerd/main/containerd.service"
+runc_release_url: "https://github.com/opencontainers/runc/releases/download/v{{ runc_version }}/runc.amd64"
+runc_release_dest: "/tmp/runc.amd64"
+cni_plugins_url: "https://github.com/containernetworking/plugins/releases/download/v{{ cni_plugins_version }}/cni-plugins-linux-amd64-v{{ cni_plugins_version }}.tgz"
+cni_plugins_dest: "/tmp/cni-plugins-linux-amd64-v{{ cni_plugins_version }}.tgz"
+k8s_repository: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ k8s_version }}/deb/ /"
