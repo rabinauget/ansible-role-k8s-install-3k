@@ -143,6 +143,11 @@
     dest: /etc/systemd/system/containerd.service
     mode: '0644'
     force: true
+    timeout: 30
+  register: download_result
+  retries: 3
+  delay: 10
+  until: download_result is succeeded
   notify:
     - Reload systemd
     - Enable and start containerd
@@ -190,8 +195,10 @@
   args:
     creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
     executable: /bin/bash
-  vars:
-    k8s_version: "v1.34"
+  register: gpg_result
+  retries: 3
+  delay: 10
+  until: gpg_result is succeeded
 
 - name: Add Kubernetes apt repository
   ansible.builtin.apt_repository:
