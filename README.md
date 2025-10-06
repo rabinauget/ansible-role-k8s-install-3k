@@ -19,26 +19,10 @@ Role Variables
 Variables par défaut (définies dans defaults/main.yml) :
 
 ```yaml
-# Version de Kubernetes à installer
 k8s_version: "v1.34"
-
-# URL et destination du binaire containerd
-containerd_release_url: "https://github.com/containerd/containerd/releases/download/v2.1.4/containerd-2.1.4-linux-amd64.tar.gz"
-containerd_release_dest: "/tmp/containerd-2.1.4-linux-amd64.tar.gz"
-
-# URL du service systemd pour containerd
-containerd_service_url: "https://raw.githubusercontent.com/containerd/containerd/main/containerd.service"
-
-# URL et destination du binaire runc
-runc_release_url: "https://github.com/opencontainers/runc/releases/download/v1.3.1/runc.amd64"
-runc_release_dest: "/tmp/runc.amd64"
-
-# URL et destination des plugins CNI
-cni_plugins_url: "https://github.com/containernetworking/plugins/releases/download/v1.8.0/cni-plugins-linux-amd64-v1.8.0.tgz"
-cni_plugins_dest: "/tmp/cni-plugins-linux-amd64-v1.8.0.tgz"
-
-# Dépôt apt Kubernetes
-k8s_repository: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/{{ k8s_version }}/deb/ /"
+containerd_version: "2.1.4"
+runc_version: "1.3.1"
+cni_plugins_version: "1.8.0"
 ```
 Mais on peut les surcharger selon nos besoins (par exemple, pour installer une version spécifique de Kubernetes ou de containerd).
 
